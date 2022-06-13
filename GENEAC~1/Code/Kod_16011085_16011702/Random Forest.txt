@@ -1,0 +1,13 @@
+> library(CMA)
+> library(iDINGO)
+> data(gbm)
+> y<-gbm[,1]
+> x<-gbm[,-1]
+> library(randomForest)
+> rf<-randomForest(x,y)
+> show(rf)
+> predict(rf)
+> plot(rf,main="Random Forest")
+> plot(predict(rf))
+> plot(predict(rf),y)
+> varImpPlot(rf, sort=TRUE, importance=TRUE, main=deparse("Importance of Attributes"))

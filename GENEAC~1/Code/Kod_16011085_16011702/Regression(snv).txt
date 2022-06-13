@@ -1,0 +1,76 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R özgür bir yazýlýmdýr ve KESÝNLÝKLE BÝR GARANTÝ VERMEZ.
+Belli koþullar altýnda tekrar daðýtýmýna izin verilir.
+Daðýtým detaylarý için 'license()' ya da 'licence()' girin.
+
+R, bir çok insanýn katkýda bulunduðu ortak bir projedir
+Daha fazla bilgi için 'contributors()' girin.
+Yayýnlarda R veya R paketlerinden alýntý yapmak için 'citation()' girin.
+
+Birkaç örnek için 'demo()', çevrimiçi yardým için 'help()' veya
+HTML tarayýcýlý yardýmý açmak için 'help.start()' girin.
+R'den çýkmak için 'q()' girin.
+
+[Kaydedilen çalýþma alaný geri yüklendi]
+
+> library(rpart)
+> library(CMA)
+Zorunlu paket yükleniyor: Biobase
+Zorunlu paket yükleniyor: BiocGenerics
+Zorunlu paket yükleniyor: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ, clusterExport, clusterMap, parApply, parCapply, parLapply, parLapplyLB, parRapply,
+    parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rownames,
+    sapply, setdiff, sort, table, tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with 'browseVignettes()'. To cite Bioconductor, see 'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+> library(expands)
+Hata: package or namespace load failed for ‘expands’:
+ .onLoad failed in loadNamespace() for 'commonsMath', details:
+  call: .jinit(parameters = parameters)
+  error: Unable to create a Java class loader.
+> library(expands)
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+> library(expands)
+> data(snv)
+> snvY<-snv[,7]
+> snvX<-data.frame(snv[,-7])
+> rp<-rpart(snvY~., method="anova", data=snvX)
+> show(rp)
+n= 773 
+
+node), split, n, deviance, yval
+      * denotes terminal node
+
+1) root 773 180.1837000 0.3699871  
+  2) AF_Tumor< 0.8232608 437   0.0000000 0.0000000 *
+  3) AF_Tumor>=0.8232608 336  42.5595200 0.8511905  
+    6) AF_Tumor>=0.9984756 49   0.0000000 0.0000000 *
+    7) AF_Tumor< 0.9984756 287   0.9965157 0.9965157 *
+> library(rpart.plot)
+> prp(rp)
+> 

@@ -1,0 +1,8 @@
+> library(iDINGO)
+> data(gbm)
+> gbmData<-data.frame(gbm)[1:19]
+> varianceData<-gbmData[, order(apply(gbmData, 2, var), decreasing=T)]
+> arrangedData<-varianceData[1:156,1:19]
+> d<-dist(arrangedData, method="euclidean")
+> model<-hclust(d, method="ward.D2")
+> plot(model, main="Clustering with Ward Method")

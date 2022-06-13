@@ -1,0 +1,13 @@
+> library(iDINGO)
+> data(gbm)
+> gbmData<-data.frame(gbm)[1:19]
+> varianceData<-gbmData[,order(apply(gbmData, 2, var), decreasing=T)]
+> gbmData<-varianceData[,1:19]
+> gbmData[1:156,1:19]
+> library(cluster)
+> model<-pam(gbmData, metric="euclidean",3)
+> model$medoids
+> library(fpc)
+> plotcluster(gbmData, model$cluster, main="Clustering with PAM Method")
+> clusplot(gbmData, model$cluster, color=TRUE, labels=2, main="Clustering with PAM method")
+> plot(silhouette(model),main="Silhouette for PAM")

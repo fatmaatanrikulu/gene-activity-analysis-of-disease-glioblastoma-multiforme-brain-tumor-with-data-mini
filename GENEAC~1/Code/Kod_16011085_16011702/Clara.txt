@@ -1,0 +1,11 @@
+> library(iDINGO)
+> data(gbm)
+> gbmData<-data.frame(gbm)[1:19]
+> varianceData<-gbmData[, order(apply(gbmData, 2, var), decreasing=T)]
+> gbmData<-varianceData[,1:19]
+> library(cluster)
+> model<-clara(gbmData, 3, metric="euclidean", samples=400)
+> model$clustering
+> library(fpc)
+> plotcluster(gbmData, model$cluster, main="Clustering with CLARA Method")
+> clusplot(gbmData, model$cluster, color=TRUE, labels=2, lines=0, main="Clustering with CLARA Method")

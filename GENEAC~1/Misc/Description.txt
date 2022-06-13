@@ -1,0 +1,6 @@
+Software for which project source code or database should be used:
+
+1. RGui:
+
+Command program created for the R language used for statistical computing and data mining methods.
+Because R is free software, it works with packages the developers have installed.

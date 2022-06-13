@@ -1,0 +1,138 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R özgür bir yazýlýmdýr ve KESÝNLÝKLE BÝR GARANTÝ VERMEZ.
+Belli koþullar altýnda tekrar daðýtýmýna izin verilir.
+Daðýtým detaylarý için 'license()' ya da 'licence()' girin.
+
+R, bir çok insanýn katkýda bulunduðu ortak bir projedir
+Daha fazla bilgi için 'contributors()' girin.
+Yayýnlarda R veya R paketlerinden alýntý yapmak için 'citation()' girin.
+
+Birkaç örnek için 'demo()', çevrimiçi yardým için 'help()' veya
+HTML tarayýcýlý yardýmý açmak için 'help.start()' girin.
+R'den çýkmak için 'q()' girin.
+
+[Kaydedilen çalýþma alaný geri yüklendi]
+
+> library(CMA)
+Zorunlu paket yükleniyor: Biobase
+Zorunlu paket yükleniyor: BiocGenerics
+Zorunlu paket yükleniyor: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ, clusterExport, clusterMap, parApply, parCapply, parLapply, parLapplyLB, parRapply,
+    parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rownames,
+    sapply, setdiff, sort, table, tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with 'browseVignettes()'. To cite Bioconductor, see 'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+> library(iDINGO)
+Zorunlu paket yükleniyor: igraph
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:CMA’:
+
+    compare
+
+The following objects are masked from ‘package:BiocGenerics’:
+
+    normalize, path, union
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+> data(gbm)
+> y<-gbm[,1]
+> x<-gbm[,-1]
+> library(randomForest)
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ‘randomForest’
+
+The following object is masked from ‘package:Biobase’:
+
+    combine
+
+The following object is masked from ‘package:BiocGenerics’:
+
+    combine
+
+> rf<-randomForest(x,y)
+Warning message:
+In randomForest.default(x, y) :
+  The response has five or fewer unique values.  Are you sure you want to do regression?
+> show(rf)
+
+Call:
+ randomForest(x = x, y = y) 
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 6
+
+          Mean of squared residuals: 1.130442
+                    % Var explained: -13.51
+> predict(rf)
+TCGA-02-2466 TCGA-02-2483 TCGA-02-2485 TCGA-02-2486 TCGA-06-0122 TCGA-06-0124 TCGA-06-0125 TCGA-06-0126 TCGA-06-0128 TCGA-06-0129 TCGA-06-0137 TCGA-06-0141 
+ 0.073333333  0.586231884 -0.205828780 -0.057435897 -0.068947368 -0.211111111 -0.209944751  0.013043478 -0.159128978 -0.028864060 -0.432234432  0.190036232 
+TCGA-06-0145 TCGA-06-0147 TCGA-06-0155 TCGA-06-0169 TCGA-06-0879 TCGA-06-0939 TCGA-06-1086 TCGA-06-1087 TCGA-06-1800 TCGA-06-2557 TCGA-06-2559 TCGA-06-2566 
+ 0.117010309  0.121296296  0.213513514  0.126079447  0.100936330 -0.162944162  0.146551724 -0.017992424 -0.185146805  0.023316062 -0.041472868  0.084027778 
+TCGA-06-2567 TCGA-12-0670 TCGA-12-0820 TCGA-12-0821 TCGA-12-0822 TCGA-12-0826 TCGA-12-0827 TCGA-12-0828 TCGA-12-0829 TCGA-12-1088 TCGA-12-1089 TCGA-12-1090 
+ 0.281028369 -0.230397237  0.039329806 -0.020883534 -0.267984934  0.101498127  0.139961014 -0.022281640  0.063089431  0.093448940  0.083854167 -0.366296296 
+TCGA-12-1091 TCGA-12-1092 TCGA-12-1093 TCGA-12-1095 TCGA-12-1096 TCGA-12-1097 TCGA-12-1098 TCGA-12-1099 TCGA-12-1597 TCGA-12-1598 TCGA-12-1599 TCGA-12-1600 
+-0.140602837  0.288007055 -0.310507246 -0.032375479 -0.149720670 -0.062905983 -0.022828283  0.354545455 -0.003108808 -0.427322404  0.133151184  0.073784722 
+TCGA-12-1602 TCGA-12-3644 TCGA-12-3646 TCGA-12-3648 TCGA-12-3649 TCGA-12-3650 TCGA-12-3652 TCGA-12-3653 TCGA-14-0736 TCGA-14-0783 TCGA-14-0786 TCGA-14-0787 
+ 0.025089606  0.114414414 -0.218007663  0.192691622  0.213263525  0.613541667  0.170666667  0.073298429 -0.170414201  0.167790262 -0.111111111  0.169142857 
+TCGA-14-0790 TCGA-14-0812 TCGA-14-0813 TCGA-14-0817 TCGA-14-0865 TCGA-14-0866 TCGA-14-0867 TCGA-14-0871 TCGA-14-1034 TCGA-14-1037 TCGA-14-1396 TCGA-14-1401 
+ 0.142592593 -0.093297101 -0.117049808  0.452304965 -0.097063903  0.033699634  0.587349398  0.024951267 -0.210956790  0.243350604  0.297752809  0.002456140 
+TCGA-14-1402 TCGA-14-1451 TCGA-14-1452 TCGA-14-1453 TCGA-14-1454 TCGA-14-1455 TCGA-14-1456 TCGA-14-1458 TCGA-14-1794 TCGA-14-1795 TCGA-14-1821 TCGA-14-1823 
+-0.037411348 -0.186632826  0.027560521  0.316666667 -0.207865169  0.440760870  0.062112933  0.148594378 -0.070370370  0.188274707  0.126737968 -0.097378277 
+TCGA-14-1825 TCGA-14-1827 TCGA-14-2554 TCGA-14-3476 TCGA-15-1446 TCGA-15-1447 TCGA-16-0846 TCGA-16-0848 TCGA-16-0849 TCGA-16-0850 TCGA-16-1045 TCGA-16-1047 
+ 0.128431373 -0.097477477  0.033954451  0.471301248 -0.158857143 -0.156028369  0.063120567  0.022335025  0.018699187  0.086596120  0.099625468 -0.222796935 
+TCGA-16-1055 TCGA-16-1056 TCGA-16-1060 TCGA-16-1062 TCGA-16-1063 TCGA-19-0957 TCGA-19-0962 TCGA-19-0963 TCGA-19-1385 TCGA-19-1386 TCGA-19-1389 TCGA-19-1390 
+-0.225185185  0.279601990 -0.039682540 -0.112777778 -0.089703316  0.002508961 -0.214285714  0.020555556  0.070274914 -0.101418440  0.134609250  0.060127592 
+TCGA-19-1392 TCGA-19-1788 TCGA-19-1789 TCGA-19-1790 TCGA-19-2620 TCGA-19-2621 TCGA-19-2624 TCGA-19-2625 TCGA-19-2629 TCGA-19-2631 TCGA-26-1439 TCGA-26-1799 
+ 0.140293040  0.115053763  0.061235955  0.088948307  0.213232831  0.235911602  0.193078324  0.262186380  0.408190476  0.195353535 -0.353591160  0.044741533 
+TCGA-27-1830 TCGA-27-1831 TCGA-27-1832 TCGA-27-1833 TCGA-27-1834 TCGA-27-1835 TCGA-27-1836 TCGA-27-1837 TCGA-27-2518 TCGA-27-2523 TCGA-27-2524 TCGA-27-2526 
+-0.204301075 -0.021538462 -0.079749104 -0.270226537  0.133143939  0.181387479 -0.061434109  0.057388316  0.045623836  0.246837607  0.084183673 -0.078212291 
+TCGA-27-2527 TCGA-27-2528 TCGA-28-1747 TCGA-28-1755 TCGA-32-1970 TCGA-32-1973 TCGA-32-1976 TCGA-32-1978 TCGA-32-1982 TCGA-32-1987 TCGA-32-1991 TCGA-32-2494 
+ 0.083699634  0.269369369 -0.218750000  0.152304965  0.101595745  0.284761905  0.433693694 -0.044206774  0.016774194  0.193431856 -0.072978304  0.212310606 
+TCGA-32-2495 TCGA-32-2498 TCGA-32-2615 TCGA-32-2616 TCGA-32-2632 TCGA-32-4210 TCGA-32-4719 TCGA-41-2571 TCGA-41-2575 TCGA-41-3392 TCGA-41-3393 TCGA-41-4097 
+-0.234722222  0.257169460  0.075232775  0.484153005  0.208148148  0.175294118 -0.197894737  0.311433172  0.109677419  0.043429487  0.390136054  0.044508671 
+> plot(rf,main="Random Forest")
+> plot(predict(rf))
+> plot(predict(rf),y)
+> varImpPlot(rf, sort=TRUE, importance=TRUE, main=deparse("Niteliklerin önem sýrasý"))
+Warning messages:
+1: In mtext(labels[o], side = 2, line = loffset, at = y, adj = 0, col = color,  :
+  "importance" bir grafiksel parametre deðil
+2: In title(main = main, xlab = xlab, ...) :
+  "importance" bir grafiksel parametre deðil
+3: In title(ylab = ylab, ...) : "importance" bir grafiksel parametre deðil
+> varImpPlot(rf, sort=TRUE, importance=TRUE, main=deparse("Importance of Attributes"))
+There were 12 warnings (use warnings() to see them)
+> 

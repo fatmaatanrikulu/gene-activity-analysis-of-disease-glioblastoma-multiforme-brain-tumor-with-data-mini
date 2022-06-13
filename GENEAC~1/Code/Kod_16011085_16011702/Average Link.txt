@@ -1,0 +1,9 @@
+> library(iDINGO)
+> data(gbm)
+> library(cluster)
+> gbmData<-data.frame(gbm)[1:19]
+> gbmData.rearrange<-gbmData[,order(apply(gbmData, 2, var), decreasing=T)]
+> gbmData<-gbmData.rearrange[1:156,1:19]
+> bannerplot(agnes(gbmData), main="Bannerplot")
+> model<-agnes(gbmData, metric="euclidean", method="average", stand=TRUE)
+> pltree(model, main="Average Link Method")

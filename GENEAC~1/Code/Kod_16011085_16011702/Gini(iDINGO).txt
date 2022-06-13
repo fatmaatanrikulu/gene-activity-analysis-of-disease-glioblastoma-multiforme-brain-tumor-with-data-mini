@@ -1,0 +1,102 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R özgür bir yazýlýmdýr ve KESÝNLÝKLE BÝR GARANTÝ VERMEZ.
+Belli koþullar altýnda tekrar daðýtýmýna izin verilir.
+Daðýtým detaylarý için 'license()' ya da 'licence()' girin.
+
+R, bir çok insanýn katkýda bulunduðu ortak bir projedir
+Daha fazla bilgi için 'contributors()' girin.
+Yayýnlarda R veya R paketlerinden alýntý yapmak için 'citation()' girin.
+
+Birkaç örnek için 'demo()', çevrimiçi yardým için 'help()' veya
+HTML tarayýcýlý yardýmý açmak için 'help.start()' girin.
+R'den çýkmak için 'q()' girin.
+
+[Kaydedilen çalýþma alaný geri yüklendi]
+
+> library(rpart)
+> library(CMA)
+Zorunlu paket yükleniyor: Biobase
+Zorunlu paket yükleniyor: BiocGenerics
+Zorunlu paket yükleniyor: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ, clusterExport, clusterMap, parApply, parCapply, parLapply, parLapplyLB, parRapply,
+    parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rownames,
+    sapply, setdiff, sort, table, tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with 'browseVignettes()'. To cite Bioconductor, see 'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+> library(iDINGO)
+Zorunlu paket yükleniyor: igraph
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:CMA’:
+
+    compare
+
+The following objects are masked from ‘package:BiocGenerics’:
+
+    normalize, path, union
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+> data(gbm)
+> survival<-gbm[,1]
+> gbmData<-data.frame(gbm[,-1])
+> giniData<-rpart(survival~., data= gbmData, method="class", parms=list(split="gini"))
+> show(giniData)
+n= 156 
+
+node), split, n, loss, yval, (yprob)
+      * denotes terminal node
+
+ 1) root 156 73 1 (0.46794872 0.53205128)  
+   2) PIK3R2< 0.9744048 132 64 -1 (0.51515152 0.48484848)  
+     4) PIK3R1>=-0.1350855 70 26 -1 (0.62857143 0.37142857)  
+       8) MLLT7< -0.4786243 16  1 -1 (0.93750000 0.06250000) *
+       9) MLLT7>=-0.4786243 54 25 -1 (0.53703704 0.46296296)  
+        18) PTEN< 0.5669347 39 13 -1 (0.66666667 0.33333333)  
+          36) PIK3C2G< -0.1847513 19  2 -1 (0.89473684 0.10526316) *
+          37) PIK3C2G>=-0.1847513 20  9 1 (0.45000000 0.55000000)  
+            74) PIK3R2< 0.006289552 12  4 -1 (0.66666667 0.33333333) *
+            75) PIK3R2>=0.006289552 8  1 1 (0.12500000 0.87500000) *
+        19) PTEN>=0.5669347 15  3 1 (0.20000000 0.80000000) *
+     5) PIK3R1< -0.1350855 62 24 1 (0.38709677 0.61290323)  
+      10) PIK3C2B< 0.08046636 48 23 1 (0.47916667 0.52083333)  
+        20) PIK3R1< -0.4629548 31 12 -1 (0.61290323 0.38709677)  
+          40) FOXO3A>=0.1438734 8  0 -1 (1.00000000 0.00000000) *
+          41) FOXO3A< 0.1438734 23 11 1 (0.47826087 0.52173913)  
+            82) PIK3R2>=-0.2309594 9  2 -1 (0.77777778 0.22222222) *
+            83) PIK3R2< -0.2309594 14  4 1 (0.28571429 0.71428571) *
+        21) PIK3R1>=-0.4629548 17  4 1 (0.23529412 0.76470588) *
+      11) PIK3C2B>=0.08046636 14  1 1 (0.07142857 0.92857143) *
+   3) PIK3R2>=0.9744048 24  5 1 (0.20833333 0.79166667) *
+> plot(giniData, branch=0, margin=0.1)
+> text(giniData, digits=3, use.n=TRUE)
+> 

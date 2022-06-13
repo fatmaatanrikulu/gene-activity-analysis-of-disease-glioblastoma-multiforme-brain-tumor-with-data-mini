@@ -1,0 +1,13 @@
+Pasting the codes into the RGui environment must be one by one.
+
+As an example, the following code should be copied to the R environment one by one.
+
+> library(MethylMix)
+> data(METcancer)
+> library(cluster)
+> mcData<-data.frame(METcancer)[1:251]
+> mcData.rearrange<-mcData[,order(apply(mcData,2,var),decreasing=T)]
+> mcData<-mcData.rearrange[1:14,1:251]
+> bannerplot(agnes(mcData),main="Banneplot")
+> agn1<-agnes(mcData, metric="manhattan", method="single", stand=TRUE)
+> pltree(agn1,main="Clustering with Nearest Neighbors Algorithm")

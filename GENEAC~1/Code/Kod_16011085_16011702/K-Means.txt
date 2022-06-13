@@ -1,0 +1,13 @@
+> library(iDINGO)
+> data(gbm)
+> library(cluster)
+> gbmData<-data.frame(gbm)[1:19]
+> varianceData<-gbmData[,order(apply(gbmData, 2, var), decreasing=T)]
+> gbmData<-varianceData[,1:19]
+> gbmData[1:156,1:19]
+> model<-kmeans(gbmData,3)
+> show(model)
+> library(fpc)
+> plotcluster(gbmData, model$cluster, main="Clustering with K-Means Method")
+> library(cluster)
+> clusplot(gbmData, model$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)

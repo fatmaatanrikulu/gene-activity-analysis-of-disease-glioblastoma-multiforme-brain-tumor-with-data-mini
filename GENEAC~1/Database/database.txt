@@ -1,0 +1,15 @@
+gbm (iDINGO) : 
+
+https://www.rdocumentation.org/packages/iDINGO/versions/1.0.4 
+
+snv & cbs (expands) : 
+
+https://www.rdocumentation.org/packages/expands/versions/2.1.2 
+
+METcancer & METnormal (MethylMix) : 
+
+https://www.rdocumentation.org/packages/MethylMix/versions/1.6.0 
+
+gbm (iClusterPlus) : 
+
+https://www.rdocumentation.org/packages/iClusterPlus/versions/1.8.0 

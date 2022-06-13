@@ -1,0 +1,67 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R özgür bir yazýlýmdýr ve KESÝNLÝKLE BÝR GARANTÝ VERMEZ.
+Belli koþullar altýnda tekrar daðýtýmýna izin verilir.
+Daðýtým detaylarý için 'license()' ya da 'licence()' girin.
+
+R, bir çok insanýn katkýda bulunduðu ortak bir projedir
+Daha fazla bilgi için 'contributors()' girin.
+Yayýnlarda R veya R paketlerinden alýntý yapmak için 'citation()' girin.
+
+Birkaç örnek için 'demo()', çevrimiçi yardým için 'help()' veya
+HTML tarayýcýlý yardýmý açmak için 'help.start()' girin.
+R'den çýkmak için 'q()' girin.
+
+[Kaydedilen çalýþma alaný geri yüklendi]
+
+> library(MethylMix)
+> data(METnormal)
+> library(cluster)
+> mnData<-data.frame(METnormal)[1:4]
+> varianceData<-mnData[,order(apply(mnData, 2, var), decreasing=T)]
+> mnData<-varianceData[,1:4]
+> mnData[1:14,1:4]
+       X4321207026_C X4321207042_K X4321207042_E X4321207019_B
+ERBB2       0.105520      0.084731      0.088934       0.14834
+FAAH        0.279150      0.220890      0.196890       0.21961
+FNDC3B      0.784840      0.752130      0.796010       0.76382
+FOXD1       0.074815      0.088573      0.085960       0.13591
+HOXD10      0.166590      0.200730      0.162870       0.20063
+IRX2        0.087822      0.104640      0.073123       0.12246
+ME1         0.098684      0.106760      0.081074       0.11287
+MGMT        0.101260      0.101810      0.117730       0.17766
+OAS1        0.507400      0.467450      0.486260       0.49007
+OLIG2       0.087828      0.093206      0.074037       0.12047
+SOX10       0.701360      0.693330      0.529210       0.57315
+TBX3        0.115240      0.099357      0.102400       0.14157
+TRAF6       0.076957      0.063005      0.055919       0.10458
+ZNF217      0.275720      0.331240      0.283950       0.30051
+> model<-kmeans(mnData,3)
+> show(model)
+K-means clustering with 3 clusters of sizes 3, 8, 3
+
+Cluster means:
+  X4321207026_C X4321207042_K X4321207042_E X4321207019_B
+1    0.66453333    0.63763667    0.60382667     0.6090133
+2    0.09351575    0.09276025    0.08489713     0.1329825
+3    0.24048667    0.25095333    0.21457000     0.2402500
+
+Clustering vector:
+ ERBB2   FAAH FNDC3B  FOXD1 HOXD10   IRX2    ME1   MGMT   OAS1  OLIG2  SOX10   TBX3  TRAF6 ZNF217 
+     2      3      1      2      3      2      2      2      1      2      1      2      2      3 
+
+Within cluster sum of squares by cluster:
+[1] 0.181417555 0.009126963 0.031495173
+ (between_SS / total_SS =  91.7 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"         "iter"         "ifault"      
+> library(fpc)
+> plotcluster(mnData, model$cluster, main="Clustering with K-Means Method")
+> library(cluster)
+> clusplot(mnData, model$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
+> 

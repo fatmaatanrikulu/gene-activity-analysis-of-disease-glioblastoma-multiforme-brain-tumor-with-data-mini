@@ -1,0 +1,29 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R özgür bir yazılımdır ve KESİNLİKLE BİR GARANTİ VERMEZ.
+Belli koşullar altında tekrar dağıtımına izin verilir.
+Dağıtım detayları için 'license()' ya da 'licence()' girin.
+
+R, bir çok insanın katkıda bulunduğu ortak bir projedir
+Daha fazla bilgi için 'contributors()' girin.
+Yayınlarda R veya R paketlerinden alıntı yapmak için 'citation()' girin.
+
+Birkaç örnek için 'demo()', çevrimiçi yardım için 'help()' veya
+HTML tarayıcılı yardımı açmak için 'help.start()' girin.
+R'den çıkmak için 'q()' girin.
+
+[Kaydedilen çalışma alanı geri yüklendi]
+
+> library(MethylMix)
+> data(METnormal)
+> library(cluster)
+> mnData<-data.frame(METnormal)[1:4]
+> mnData.rearrange<-mnData[,order(apply(mnData,2,var),decreasing=T)]
+> mnData<-mnData.rearrange[1:14,1:4]
+> bannerplot(agnes(mnData),main="Bannerplot")
+> agn1<-agnes(mnData, metric="manhattan", method="single", stand=TRUE)
+> pltree(agn1,main="Clustering with Nearest Neighbors Algorithm")
+> 

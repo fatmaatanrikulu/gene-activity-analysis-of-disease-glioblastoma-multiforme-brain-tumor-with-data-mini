@@ -1,0 +1,105 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R özgür bir yazýlýmdýr ve KESÝNLÝKLE BÝR GARANTÝ VERMEZ.
+Belli koþullar altýnda tekrar daðýtýmýna izin verilir.
+Daðýtým detaylarý için 'license()' ya da 'licence()' girin.
+
+R, bir çok insanýn katkýda bulunduðu ortak bir projedir
+Daha fazla bilgi için 'contributors()' girin.
+Yayýnlarda R veya R paketlerinden alýntý yapmak için 'citation()' girin.
+
+Birkaç örnek için 'demo()', çevrimiçi yardým için 'help()' veya
+HTML tarayýcýlý yardýmý açmak için 'help.start()' girin.
+R'den çýkmak için 'q()' girin.
+
+[Kaydedilen çalýþma alaný geri yüklendi]
+
+> library(CMA)
+Zorunlu paket yükleniyor: Biobase
+Zorunlu paket yükleniyor: BiocGenerics
+Zorunlu paket yükleniyor: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ, clusterExport, clusterMap, parApply, parCapply, parLapply, parLapplyLB, parRapply,
+    parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rownames,
+    sapply, setdiff, sort, table, tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with 'browseVignettes()'. To cite Bioconductor, see 'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+> library(expands)
+Hata: package or namespace load failed for ‘expands’:
+ .onLoad failed in loadNamespace() for 'commonsMath', details:
+  call: .jinit(parameters = parameters)
+  error: Unable to create a Java class loader.
+> library(expands)
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+ERROR: Java exception occurred during rJava bootstrap - see stderr for Java stack trace.
+> library(expands)
+> data(cbs)
+> y<-cbs[,1]
+> x<-cbs[,-1]
+> library(randomForest)
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ‘randomForest’
+
+The following object is masked from ‘package:Biobase’:
+
+    combine
+
+The following object is masked from ‘package:BiocGenerics’:
+
+    combine
+
+> rf<-randomForest(x,y)
+> show(rf)
+
+Call:
+ randomForest(x = x, y = y) 
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 1
+
+          Mean of squared residuals: 19.9733
+                    % Var explained: 56.25
+> predict(rf)
+  [1] 18.503769 14.834595  7.901491  9.450975 12.920880 16.497472 17.600000  8.074074  7.672643 11.698276 11.007258  8.724324  7.152330 14.934021 16.946516 15.726307
+ [17] 14.300940  6.809804 17.179401  8.297985 10.951347 14.592350  8.187689  5.333626 17.004261 14.590655  4.327198 21.005525 13.694092 13.475309 17.042714 12.691520
+ [33] 11.326742 13.863608 15.292222 11.421563 10.363162 13.477875  9.458481 15.525212 11.265568 15.032451 18.919947 12.623643 15.276511 17.463731  5.800562  7.311491
+ [49] 11.704225 20.932090  3.488499 12.091905 16.761202  6.358509  6.832873 15.436015 15.358935 14.248686 10.837411 15.075668  3.136667 13.977778 17.890965 18.384608
+ [65] 14.569960 17.308333 11.664516  3.594865  8.823721 13.306373 14.548705  4.943467 19.893153 13.043939 13.642480 14.327480  8.892660 13.495879 14.406894 13.729402
+ [81] 14.186508 13.770458 15.281615 14.202763  6.499643  9.042935 19.880114  5.342750 12.465320 10.591300  7.632215 14.902448  9.475090 13.755648  5.516918 14.455386
+ [97]  8.266095  9.715323 18.047663  2.912722 18.797490 15.594571 13.684815 12.229768 13.245253 15.281884 16.060526  5.318487  5.522193 18.967031  8.114737 17.530442
+[113] 16.966135 18.486051  3.277808  9.882286 18.598680  9.179668 11.132136  7.028170
+> plot(rf,main="Random Forest")
+> plot(predict(rf))
+> plot(predict(rf),y)
+> varImpPlot(rf, sort=TRUE, importance=TRUE, main=deparse("Importance of Attributes"))
+Warning messages:
+1: In mtext(labels[o], side = 2, line = loffset, at = y, adj = 0, col = color,  :
+  "importance" bir grafiksel parametre deðil
+2: In title(main = main, xlab = xlab, ...) :
+  "importance" bir grafiksel parametre deðil
+3: In title(ylab = ylab, ...) : "importance" bir grafiksel parametre deðil
+> 

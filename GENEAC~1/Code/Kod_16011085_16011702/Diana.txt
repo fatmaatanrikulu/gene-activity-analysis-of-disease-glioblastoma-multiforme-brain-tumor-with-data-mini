@@ -1,0 +1,9 @@
+> library(iDINGO)
+> data(gbm)
+> gbmData<-data.frame(gbm)[1:19]
+> arrangeData<-gbmData[,order(apply(gbmData, 2, var), decreasing=T)]
+> gbmData <- arrangeData[,1:19]
+> library(cluster)
+> model<-diana(gbmData, metric="euclidean")
+> bannerplot(model, main="Clustering with DIANA")
+> pltree(model, main="Clustering with DIANA")

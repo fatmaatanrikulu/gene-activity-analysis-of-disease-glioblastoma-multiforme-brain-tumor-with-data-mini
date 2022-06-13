@@ -1,0 +1,29 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R özgür bir yazýlýmdýr ve KESÝNLÝKLE BÝR GARANTÝ VERMEZ.
+Belli koþullar altýnda tekrar daðýtýmýna izin verilir.
+Daðýtým detaylarý için 'license()' ya da 'licence()' girin.
+
+R, bir çok insanýn katkýda bulunduðu ortak bir projedir
+Daha fazla bilgi için 'contributors()' girin.
+Yayýnlarda R veya R paketlerinden alýntý yapmak için 'citation()' girin.
+
+Birkaç örnek için 'demo()', çevrimiçi yardým için 'help()' veya
+HTML tarayýcýlý yardýmý açmak için 'help.start()' girin.
+R'den çýkmak için 'q()' girin.
+
+[Kaydedilen çalýþma alaný geri yüklendi]
+
+> library(MethylMix)
+> data(METnormal)
+> mnData<-data.frame(METnormal)[1:4]
+> arrangeData<-mnData[,order(apply(mnData, 2, var), decreasing=T)]
+> mnData <- arrangeData[,1:4]
+> library(cluster)
+> model<-diana(mnData, metric="euclidean")
+> bannerplot(model, main="Clustering with DIANA")
+> pltree(model, main="Clustering with DIANA")
+> 

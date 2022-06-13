@@ -1,0 +1,10 @@
+> library(rpart)
+> library(CMA)
+> library(iDINGO)
+> data(gbm)
+> survival<-gbm[,1]
+> gbmData<-data.frame(gbm[,-1])
+> giniData<-rpart(survival~., data= gbmData, method="class", parms=list(split="gini"))
+> show(giniData)
+> plot(giniData, branch=0, margin=0.1)
+> text(giniData, digits=3, use.n=TRUE)

@@ -1,0 +1,10 @@
+> library(rpart)
+> library(CMA)
+> library(iDINGO)
+> data(gbm)
+> gbmY<-gbm[,1]
+> gbmX<-data.frame(gbm[,-1])
+> rp<-rpart(gbmY~., method="anova", data=gbmX)
+> show(rp)
+> library(rpart.plot)
+> prp(rp)
